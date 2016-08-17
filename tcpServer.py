@@ -10,6 +10,7 @@ def main():
     s.bind((host, port))
     s.listen(1)
     c, addr = s.accept()
+    # s.accept() will return a new socket
     # c is current connection
     print ("connection from: " + str(addr))
     while True:

@@ -278,7 +278,7 @@ class NewClass(object):	# in the parenthesis is the class from which the new cla
 						# [object] is the simplest, most basic class
 						# by convention, user-defined Python class names start with a capital letter
 	def __init__(self, age, name):	#[__intit__()] exist by default
-		self.age = age				#Python will use the 1st parameter that [__init__()] reveives to refer to the object being created.
+		self.age = age				#Python will use the 1st parameter that [__init__()] receives to refer to the object being created.
 		self.name = name			#Python convention: it's overwhelming common to use [self] as the 1st parameter in [__init__()]
 
 	def method_1(self):	# for any method in a class, you need to provide [self] as the 1st argument
@@ -325,7 +325,7 @@ super # [super] directly access the attributes or methods of a superclass
 
 #2.
 	def __init__(self,a,b,c,d):
-		super(DerivedClass, self).__init__(a,b)	# no [seld] in the 2nd parenthesis
+		super(DerivedClass, self).__init__(a,b)	# no [self] in the 2nd parenthesis
 		self.c = c
 		self.d = d
 
