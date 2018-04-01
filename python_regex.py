@@ -1,4 +1,10 @@
+# Author : Steven Wang  Date: 20160816
+
 import re
+
+#####################################################
+# r"string" : raw, "\" means just a backslash, no "escape"
+#####################################################
 
 if re.search("ape","The ape was at the apex"):
     print("There is an ape")
@@ -100,7 +106,7 @@ print("Matches :", len(re.findall("\d{2}", randStr)))
 # >>>Matches : 2
 # 1st : 12 ; 2nd : 34
 
-# Matching within a range between 5 and 5 digits
+# Matching within a range between 5 and 7 digits
 numStr = "123 12345 123456 1234567"
 print("Matches :", len(re.findall("\d{5,7}", numStr)))
 # either 5, 6 or 7 digits
@@ -115,6 +121,7 @@ if re.search("\w{3}-\w{3}-\w{4}", phNum):
     print("It is a phone number")
 # >>>It is a phone number
 
+# space
 # \s : [\f\n\r\t\v]
 # will match all kinds of space
 # \S : [^\f\n\r\t\v]
@@ -260,6 +267,7 @@ regex = re.compile(r"888-(.*)-(.*)")
 # ($m)  : Allow ^ on multiline string
  
 # ---------- Back References ----------
+# Capturing group
 # A back reference allows you to to reuse the expression
 # that proceeds it
 
@@ -315,3 +323,79 @@ randStr = "8 Apples $3, 1 Bread $1, 1 Orange $2"
 regex = re.compile(r"(?<!\$)\d+")
 matches = re.findall(regex, randStr)
 print(len(matches))
+
+# named capturing group
+(?P<question_id>[0-9]+)
+# Using parentheses around a pattern “captures” the text matched by that pattern and sends it as an argument to the view function; ?P<question_id> defines the name that will be used to identify the matched pattern
+
+####################################################
+# summary
+# [ ]   : Match what is in the brackets
+# [^ ]  : Match anything not in the brackets
+# ( )   : Return surrounded submatch
+# .     : Match any 1 character or space
+# +     : Match 1 or more of what proceeds
+# ?     : Match 0 or 1
+# *     : Match 0 or More
+# *?    : Lazy match the smallest match
+# \b    : Word boundary
+# ^     : Beginning of String
+# $     : End of String
+# \n    : Newline
+# \d    : Any 1 number
+# \D    : Anything but a number
+# \w    : Same as [a-zA-Z0-9_]
+# \W    : Same as [^a-zA-Z0-9_]
+# \s    : Same as [\f\n\r\t\v]
+# \S    : Same as [^\f\n\r\t\v]
+# {5}   : Match 5 of what proceeds the curly brackets
+# {5,7} : Match values that are between 5 and 7 in length
+# ($m)  : Allow ^ on multiline string
+ 
+# Use a back reference to substitute what is between the
+# bold tags and eliminate the bold tags
+# re.sub(r"<b>(.*?)</b>", r"\1", randStr)
+ 
+# Use a look ahead to find all characters of 1 or more
+# with a word boundary, but don't return the word
+# boundary
+# re.findall(r"\w+(?=\b)", randStr)
+ 
+# Use a look behind to find words starting with a number,
+# period and space, but only return the word that follows
+# re.findall(r"(?<=\d.\s)\w+", randStr)
+ 
+# Use a negative look behind to only return numbers without
+# a $ in front of them
+# re.findall(r"(?<!\$)\d+", randStr)
+
+#######################################################
+# | : or
+randStr = "1. Dog 2. Cat 3. Turtle"
+regex = re.compile(r"\d\.\s(Dog|Cat)")
+matches = re.findall(regex, randStr)
+for i in matches:
+    print(i)
+
+# Group
+
+birthday = input("Enter your birthday(mm-dd-yyyy):")
+bdRegex = re.search(r"(\d{1,2})-(\d{1,2})-(\d{4})", birthday)
+print("You were born on", bdRegex.group())
+print("Month", bdRegex.group(1))
+print("Day", bdRegex.group(2))
+print("Year", bdRegex.group(3))
+
+# match object
+match = re.search(r"\d{2}", "The chicken is 13 months old.")
+print("Match : ", match.group())
+print("Span : ", match.span())
+print("Start : ", match.start())
+print("End : ", match.end())
+
+# Name groups
+randStr = "December 21 1999"
+regex = r"^(?P<month>\w+)\s(?P<day>\d+)\s(?P<year>\d+)"
+print("Span : ", match.group('month'))
+print("Start : ", match.group('day'))
+print("End : ", match.group('year'))
