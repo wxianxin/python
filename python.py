@@ -512,6 +512,20 @@ def sumAll(A, *args):
 sumAll(1,2,3,4,5)
 # Number of arguments is not limited.
 
+# unpacking named arguments
+def my_func(**kwargs):
+    for name, value in kwargs.items():
+        print(name, value)
+
+# You can use these along with named arguments too. The explicit arguments get values first and then everything else is passed to *args and **kwargs. The named arguments come first in the list. 
+def multi_func(arg1, *args, **kwargs):
+	print(arg1)
+	for arg in args:
+		print(arg)
+
+	for key, value in kwargs:
+		print(key, value)
+
 x = 1
 eval("x + 1")
 # eval() interprets a string as code
@@ -659,7 +673,7 @@ variable type annotation
 # PEP-0484
 # python >= 3.5: -> is used to indicate the type that the function returns.
 
-def my_func(arg) -> my_type:
+def my_func(arg: str="pubg") -> my_type:
 
 
 
