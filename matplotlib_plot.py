@@ -5,6 +5,7 @@
 ################################################################################
 # seaborn
 import seaborn as sns
+
 sns.set()
 # To switch to seaborn defaults, simply call the set() function.
 
@@ -38,7 +39,8 @@ sns.pairplot(ndf)
 # 2. matplotlib.use("backend_name")
 
 import matplotlib
-matplotlib.use('nbagg')
+
+matplotlib.use("nbagg")
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -70,9 +72,14 @@ plt.show()
 ################################################################################
 # Axes
 fig = plt.figure()
-ax = fig.add_subplot(111) # Basically, 1 row and 1 column.
-ax.set(xlim=[0.5, 4.5], ylim=[-2, 8], title='An Example Axes',
-               ylabel='Y-Axis', xlabel='X-Axis')
+ax = fig.add_subplot(111)  # Basically, 1 row and 1 column.
+ax.set(
+    xlim=[0.5, 4.5],
+    ylim=[-2, 8],
+    title="An Example Axes",
+    ylabel="Y-Axis",
+    xlabel="X-Axis",
+)
 plt.show()
 
 # Note that the set method doesn't just apply to Axes; it applies to more-or-less all matplotlib objects.
@@ -88,8 +95,8 @@ plt.show()
 # plot & scatter
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.plot([1, 2, 3, 4], [10, 20, 25, 30], color='lightblue', linewidth=3)
-ax.scatter([0.3, 3.8, 1.2, 2.5], [11, 25, 9, 26], color='darkgreen', marker='^')
+ax.plot([1, 2, 3, 4], [10, 20, 25, 30], color="lightblue", linewidth=3)
+ax.scatter([0.3, 3.8, 1.2, 2.5], [11, 25, 9, 26], color="darkgreen", marker="^")
 ax.set_xlim(0.5, 4.5)
 plt.show()
 ################################################################################
@@ -98,17 +105,17 @@ plt.show()
 # Multiple Axes
 fig, axes = plt.subplots(nrows=2, ncols=2)
 # The axes object that was returned is a 2D numpy object array.
-axes[0,0].set(title='Upper Left')
-axes[0,1].set(title='Upper Right')
-axes[1,0].set(title='Lower Left')
-axes[1,1].set(title='Lower Right')
+axes[0, 0].set(title="Upper Left")
+axes[0, 1].set(title="Upper Right")
+axes[1, 0].set(title="Lower Left")
+axes[1, 1].set(title="Lower Right")
 
 # To iterate over all items in a multidimensional numpy array, use the `flat` attribute
 for ax in axes.flat:
-        # Remove all xticks and yticks...
-            ax.set(xticks=[])
+    # Remove all xticks and yticks...
+    ax.set(xticks=[])
 
-            plt.show()
+    plt.show()
 
 
 # # plt.subplots(): When it's called with no arguments, it creates a new figure with a single subplot.

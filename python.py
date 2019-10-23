@@ -676,5 +676,23 @@ variable type annotation
 def my_func(arg: str="pubg") -> my_type:
 
 
+########################################################################################
+It is necessary to let __getattr__() raise AttributeError when failed.
+
+    pickle class object with modified __getattr__()
+        pickle will accept AttributeError
+
+    deepcopy() will need AttributeError
+
+
+########################################################################################
+# pdb
+################################################################################
+# since python 3.7
+breakpoint()
+os.environ["PYTHONBREAKPOINT"] = "0"            # disable breakpoint()
+python -m pdb -c continue myscript.py
+########################################################################################
+
 
 EOF
